@@ -41,6 +41,8 @@ describe("Pruebas para EmpresaController", () => {
     const res = await request(app).post("/api/empresa/login").send(loginData);
 
     expect(res.status).toBe(200);
+    expect(res.body.success).toBe(true);
+    expect(res.body.data).toBeDefined();
   });
 
   // Crear Conductor

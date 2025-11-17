@@ -42,10 +42,17 @@ export const EmpresaController = {
     try {
       const { Email, Contrasena } = req.body;
 
-      const [result] = await sequelize.query(
+      const result = await sequelize.query(
         "CALL sp_LoginEmpresa(:Email, :Contrasena)",
         { replacements: { Email, Contrasena } }
       );
+
+      if (!result || result.length === 0) {
+        return res.status(401).json({
+          success: false,
+          message: "Credenciales incorrectas o conductor no encontrado",
+        });
+      }
 
       return res.status(200).json({
         success: true,

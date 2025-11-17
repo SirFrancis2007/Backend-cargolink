@@ -43,6 +43,8 @@ describe("Pruebas para AdministradorController", () => {
       .send(adminLogin);
 
     expect(res.status).toBe(200);
+    expect(res.body.success).toBe(true);
+    expect(res.body.data).toBeDefined();
   });
 
   // ==========================

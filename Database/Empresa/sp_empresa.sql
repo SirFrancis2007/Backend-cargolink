@@ -19,18 +19,10 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_LoginEmpresa $$
 CREATE PROCEDURE sp_LoginEmpresa(IN xEmail VARCHAR(100),IN xContrasena VARCHAR(255))
 BEGIN
-    DECLARE vCount INT;
-
-    SELECT COUNT(*) INTO vCount
-    FROM Empresa
-    WHERE Email = xEmail AND Contrasena = SHA2(xContrasena, 256);
-
-    IF vCount = 1 THEN
+    IF EXISTS (SELECT 1 FROM Empresa WHERE Email = xEmail AND Contrasena = SHA2(xContrasena, 256)) THEN
         SELECT idEmpresa, Nombre, Direccion, Email
         FROM Empresa
         WHERE Email = xEmail AND Contrasena = SHA2(xContrasena, 256);
-    ELSE
-        SELECT NULL AS idEmpresa, NULL AS Nombre, NULL AS Direccion;
     END IF;
 END $$
 DELIMITER ;

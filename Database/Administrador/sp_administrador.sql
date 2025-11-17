@@ -45,17 +45,9 @@ DELIMITER $$
 DROP PROCEDURE if EXISTS sp_LoginAdministrador $$
 CREATE PROCEDURE sp_LoginAdministrador(IN xEmail VARCHAR(45), IN xContrasena VARCHAR(64))
 BEGIN
-    DECLARE vCount INT;
-
-    SELECT COUNT(*) INTO vCount
-    FROM Administrador
-    WHERE Email = xEmail AND Contrasena = SHA2(xContrasena, 256);
-
-    IF vCount = 1 THEN
+    IF EXISTS (SELECT 1 FROM Administrador WHERE Email = xEmail AND Contrasena = SHA2(xContrasena, 256)) THEN
         SELECT idAdministrador, Nombre, Email, idEmpresa
-        FROM Administrador WHERE Email = xEmail;
-    ELSE
-        SELECT NULL AS idAdministrador, NULL AS Nombre, NULL AS Email, NULL AS idEmpresa;
+        FROM Administrador WHERE Email = xEmail AND Contrasena = SHA2(xContrasena, 256);
     END IF;
 END $$
 
