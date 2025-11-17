@@ -4,3 +4,10 @@ DB_PASS=root
 DB_NAME=cargolink
 DB_PORT=3306
 PORT=3000
+
+DB_HOST=nozomi.proxy.rlwy.net
+DB_USER=root
+DB_PASS=XGyicTeSKsOKPIYPxNxCNQuEaHdGxPGq
+DB_NAME=cargolink       
+DB_PORT=46026
+PORT=3000
