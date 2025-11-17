@@ -1,12 +1,12 @@
 import express from "express";
-import cors from "cors";
+//import cors from "cors";
 import empresaRoutes from "./routes/empresa.js";
 import adminRoutes from "./routes/administrador.js";
 import conductorRoutes from "./routes/conductor.js";
 
 const app = express();
 
-app.use(cors());
+//app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
