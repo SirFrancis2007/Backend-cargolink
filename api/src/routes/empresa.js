@@ -38,7 +38,7 @@ router.get(
 );
 
 // Obtener la flota (vehiculo-concudctor) de la empresa - SI
-Router.get("/vehiculo-conductor/:idEmpresa", EmpresaController.obtenerflota);
+router.get("/vehiculo-conductor/:idEmpresa", EmpresaController.obtenerflota);
 
 // Mth para actualizar la informacion de administrador
 router.put(
