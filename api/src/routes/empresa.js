@@ -11,13 +11,19 @@ router.post("/crear", EmpresaController.crearEmpresa);
 router.post("/login", EmpresaController.loginEmpresa);
 
 // Obtener Conductores de la empresa - SI
-router.get("/:idEmpresa/conductores",EmpresaController.obtenerConductoresEmpresa);
+router.get(
+  "/:idEmpresa/conductores",
+  EmpresaController.obtenerConductoresEmpresa
+);
 
 // Obtener Vehículos de la empresa - SI
 router.get("/:idEmpresa/vehiculos", EmpresaController.obtenerVehiculosEmpresa);
 
 // Obtener Administradores de la empresa - SI
-router.get("/:idEmpresa/administradores", EmpresaController.obtenerAdministradoresEmpresa);
+router.get(
+  "/:idEmpresa/administradores",
+  EmpresaController.obtenerAdministradoresEmpresa
+);
 
 // Crear Conductor - SI
 router.post("/conductor/crear", EmpresaController.crearConductor);
@@ -78,7 +84,14 @@ router.delete(
 
 // Mth para eliminar el vinculo de conductor-vehiculo - SI
 router.delete(
-  "/vehiculo-conductor/eliminar/:idvehiculo/:idconductor", EmpresaController.eliminarvinculo
+  "/vehiculo-conductor/eliminar/:idvehiculo/:idconductor",
+  EmpresaController.eliminarvinculo
+);
+
+// Obtener historial de una empresa
+router.get(
+  "/pedido/:idEmpresa/historial",
+  EmpresaController.obtenerHistorialEmpresa
 );
 
 export default router;

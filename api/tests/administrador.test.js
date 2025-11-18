@@ -80,7 +80,7 @@ describe("Pruebas para AdministradorController", () => {
       Origen: "Buenos Aires",
       Destino: "Córdoba",
       idVehiculo: 2,
-      idAdministrador: 2,
+      idAdministrador: 3,
       idEmpresa: 1,
     };
 

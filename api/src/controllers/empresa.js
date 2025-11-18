@@ -109,14 +109,14 @@ export const EmpresaController = {
     }
   },
 
-  async obtenerAdministradoresEmpresa(req,res) {
+  async obtenerAdministradoresEmpresa(req, res) {
     try {
       const { idEmpresa } = req.params;
 
       const [administrador] = await sequelize.query(
         "Call Query_Administradores_Empresa(:idEmpresa)",
         { replacements: { idEmpresa } }
-      )
+      );
 
       return res.status(200).json(administrador);
     } catch (error) {
@@ -392,9 +392,11 @@ export const EmpresaController = {
   async eliminarConductor(req, res) {
     try {
       const { idConductor } = req.params;
-      await sequelize.query("CALL sp_Conductor_Eliminar(:idConductor"), {
+
+      await sequelize.query("CALL sp_Conductor_Eliminar(:idConductor)", {
         replacements: { idConductor },
-      };
+      });
+
       return res.status(200).json({
         success: true,
         message: "El conductor ha sido eliminado correctamente",
@@ -412,12 +414,14 @@ export const EmpresaController = {
   async obtenerflota(req, res) {
     try {
       const { idEmpresa } = req.params;
-      await sequelize.query("CALL Query_Vehiculos_Conductores_Empresa(:idEmpresa)"), {
-        replacements: {idEmpresa},
-      };
+      await sequelize.query(
+        "CALL Query_Vehiculos_Conductores_Empresa(:idEmpresa)"
+      ),
+        {
+          replacements: { idEmpresa },
+        };
 
       return res.json(historial);
- 
     } catch (error) {
       console.error("Error al obtener la flota:", error);
       return res.status(500).json({
@@ -431,15 +435,17 @@ export const EmpresaController = {
   async eliminarvinculo(req, res) {
     try {
       const { idvehiculo, idconductor } = req.params;
-      await sequelize.query("CALL sp_Vehiculo_Conductor_Eliminar(:idvehiculo, :idconductor)"), {
-        replacements: {idvehiculo, idconductor},
-      };
+      await sequelize.query(
+        "CALL sp_Vehiculo_Conductor_Eliminar(:idvehiculo, :idconductor)"
+      ),
+        {
+          replacements: { idvehiculo, idconductor },
+        };
 
       return res.status(200).json({
         success: true,
         message: "El vinculo ha sido eliminado correctamente",
       });
- 
     } catch (error) {
       console.error("Error al eliminar el vinculo:", error);
       return res.status(500).json({

@@ -21,12 +21,6 @@ router.get(
   AdministradorController.obtenerHistorialPedido
 );
 
-// Obtener historial de una empresa
-router.get(
-  "/pedido/:idEmpresa/historial",
-  AdministradorController.obtenerHistorialEmpresa
-);
-
 // Crear pedido - SI
 router.post("/pedido/crear", AdministradorController.crearPedido);
 
