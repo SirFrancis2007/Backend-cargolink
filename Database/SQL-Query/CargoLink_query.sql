@@ -1,4 +1,3 @@
--- Active: 1761860465442@@127.0.0.1@3306@cargolink
 /*Consultas que figuran en los Views de la Entidad Empresa*/
 
 /*--------------------------------------------------------*/
@@ -120,6 +119,42 @@ BEGIN
     WHERE pe.idEmpresa = xidEmpresa;
 
 END $$
+
+/*--------------------------------------------------------*/
+-- Consulta que trae los paquetes de la empresa que recibe (por idEmpresa)
+/*--------------------------------------------------------*/
+DELIMITER $$
+DROP PROCEDURE IF EXISTS Query_Historial_Empresa $$
+CREATE PROCEDURE Query_Historial_Empresa (IN xidEmpresa INT)
+BEGIN
+    SELECT 
+        p.idPedido,
+        p.Nombre AS NombrePedido,
+        p.Peso,
+        p.Volumen,
+        p.Estado AS EstadoPedido,
+        p.Origen,
+        p.Destino,
+        v.Modelo AS VehiculoModelo,
+        v.Tipo AS VehiculoTipo,
+        v.Matricula AS VehiculoMatricula,
+        a.Nombre AS AdministradorNombre,
+        c.Nombre AS ConductorNombre,
+        c.Licencia AS ConductorLicencia,
+        hp.idHistorial,
+        hp.EstadoAnterior,
+        hp.EstadoActual,
+        hp.FechaModificacion
+    FROM Historial_Pedido hp
+    JOIN Pedido p ON hp.Pedido_idPedido = p.idPedido
+    JOIN Vehiculo v ON p.idVehiculo = v.idVehiculo
+    JOIN Administrador a ON p.idAdministrador = a.idAdministrador
+    LEFT JOIN Vehiculo_has_Conductor vc ON v.idVehiculo = vc.idVehiculo
+    LEFT JOIN Conductor c ON vc.idConductor = c.idConductor
+    WHERE p.idEmpresa = xidEmpresa
+    ORDER BY hp.FechaModificacion DESC;
+END $$
+DELIMITER $$;
 
 /*--------------------------------------------------------*/
 -- Consulta que tree el historial del pedido seleccionado  (por idPedido)

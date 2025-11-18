@@ -3,13 +3,13 @@ import { AdministradorController } from "../controllers/administrador.js";
 
 const router = express.Router();
 
-// Crear Administrador
+// Crear Administrador - SI
 router.post("/crear", AdministradorController.crearAdministrador);
 
-// Login Administrador
+// Login Administrador - SI
 router.post("/login", AdministradorController.loginAdministrador);
 
-// Obtener vehículos disponibles de su empresa
+// Obtener vehículos disponibles de su empresa - SI
 router.get(
   "/vehiculos/disponibles/:idEmpresa",
   AdministradorController.obtenerVehiculosDisponibles
@@ -21,16 +21,22 @@ router.get(
   AdministradorController.obtenerHistorialPedido
 );
 
-// Crear pedido
+// Obtener historial de una empresa
+router.get(
+  "/pedido/:idEmpresa/historial",
+  AdministradorController.obtenerHistorialEmpresa
+);
+
+// Crear pedido - SI
 router.post("/pedido/crear", AdministradorController.crearPedido);
 
-// Bandeja de entrada de pedidos para la empresa del administrador
+// Bandeja de entrada de pedidos para la empresa del administrador - SI
 router.get(
   "/pedidos/entrada/:idEmpresa",
   AdministradorController.obtenerPedidosEntrada
 );
 
-// Actualizar estado de pedido a "recibido"
+// Actualizar estado de pedido a "recibido" - SI
 router.put(
   "/pedido/:idPedido/actualizarEstado",
   AdministradorController.actualizarEstadoPedido
