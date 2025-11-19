@@ -415,11 +415,11 @@ export const EmpresaController = {
     try {
       const { idEmpresa } = req.params;
       await sequelize.query(
-        "CALL Query_Vehiculos_Conductores_Empresa(:idEmpresa)"
-      ),
+        "CALL Query_Vehiculos_Conductores_Empresa(:idEmpresa)",
         {
           replacements: { idEmpresa },
-        };
+        }
+      );
 
       return res.json(historial);
     } catch (error) {
