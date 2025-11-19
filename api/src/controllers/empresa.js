@@ -436,11 +436,11 @@ export const EmpresaController = {
     try {
       const { idvehiculo, idconductor } = req.params;
       await sequelize.query(
-        "CALL sp_Vehiculo_Conductor_Eliminar(:idvehiculo, :idconductor)"
-      ),
+        "CALL sp_Vehiculo_Conductor_Eliminar(:idvehiculo, :idconductor)",
         {
           replacements: { idvehiculo, idconductor },
-        };
+        }
+      );
 
       return res.status(200).json({
         success: true,
