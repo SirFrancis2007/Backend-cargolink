@@ -84,7 +84,7 @@ router.delete(
 
 // Mth para eliminar el vinculo de conductor-vehiculo - SI
 router.delete(
-  "/vehiculo-conductor/eliminar/:idvehiculo/:idconductor",
+  "/vehiculo-conductor/eliminar/:idVehiculo/:idConductor",
   EmpresaController.eliminarvinculo
 );
 

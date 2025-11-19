@@ -414,14 +414,14 @@ export const EmpresaController = {
   async obtenerflota(req, res) {
     try {
       const { idEmpresa } = req.params;
-      await sequelize.query(
+      const flota = await sequelize.query(
         "CALL Query_Vehiculos_Conductores_Empresa(:idEmpresa)",
         {
           replacements: { idEmpresa },
         }
       );
 
-      return res.json(historial);
+      return res.json(flota);
     } catch (error) {
       console.error("Error al obtener la flota:", error);
       return res.status(500).json({
@@ -434,11 +434,11 @@ export const EmpresaController = {
 
   async eliminarvinculo(req, res) {
     try {
-      const { idvehiculo, idconductor } = req.params;
+      const { idVehiculo, idConductor } = req.params;
       await sequelize.query(
-        "CALL sp_Vehiculo_Conductor_Eliminar(:idvehiculo, :idconductor)",
+        "CALL sp_Vehiculo_Conductor_Eliminar(:idVehiculo, :idConductor)",
         {
-          replacements: { idvehiculo, idconductor },
+          replacements: { idVehiculo, idConductor },
         }
       );
 
