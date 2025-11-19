@@ -73,11 +73,11 @@ export const EmpresaController = {
     try {
       const { idEmpresa } = req.params;
 
-      const [conductores] = await sequelize.query(
+      const conductores = await sequelize.query(
         "CALL Query_Conductores_Empresa(:idEmpresa)",
         { replacements: { idEmpresa } }
       );
-
+      console.log(conductores);
       return res.status(200).json(conductores);
     } catch (error) {
       console.error("Error al obtener conductores:", error);
@@ -93,7 +93,7 @@ export const EmpresaController = {
     try {
       const { idEmpresa } = req.params;
 
-      const [vehiculos] = await sequelize.query(
+      const vehiculos = await sequelize.query(
         "CALL Query_Vehiculos_Empresa(:idEmpresa)",
         { replacements: { idEmpresa } }
       );
@@ -113,7 +113,7 @@ export const EmpresaController = {
     try {
       const { idEmpresa } = req.params;
 
-      const [administrador] = await sequelize.query(
+      const administrador = await sequelize.query(
         "Call Query_Administradores_Empresa(:idEmpresa)",
         { replacements: { idEmpresa } }
       );
@@ -229,7 +229,7 @@ export const EmpresaController = {
     try {
       const { idEmpresa } = req.params;
 
-      const [pedidos] = await sequelize.query(
+      const pedidos = await sequelize.query(
         "CALL Query_Paquetes_Enviados_Empresa(:idEmpresa)",
         { replacements: { idEmpresa } }
       );
@@ -249,7 +249,7 @@ export const EmpresaController = {
     try {
       const { idPedido } = req.params;
 
-      const [historial] = await sequelize.query(
+      const historial = await sequelize.query(
         "CALL Query_Historial_Pedido(:idPedido)",
         { replacements: { idPedido } }
       );
@@ -460,7 +460,7 @@ export const EmpresaController = {
     try {
       const { idEmpresa } = req.params;
 
-      const [historial] = await sequelize.query(
+      const historial = await sequelize.query(
         "CALL Query_Historial_Empresa(:idEmpresa)",
         { replacements: { idEmpresa } }
       );

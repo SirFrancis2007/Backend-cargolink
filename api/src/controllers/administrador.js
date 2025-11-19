@@ -97,7 +97,7 @@ export const AdministradorController = {
     try {
       const { idPedido } = req.params;
 
-      const [historial] = await sequelize.query(
+      const historial = await sequelize.query(
         "CALL Query_Historial_Pedido(:idPedido)",
         { replacements: { idPedido } }
       );
@@ -165,7 +165,7 @@ export const AdministradorController = {
   async obtenerPedidosEntrada(req, res) {
     try {
       const { idEmpresa } = req.params;
-      const [pedidos] = await sequelize.query(
+      const pedidos = await sequelize.query(
         "CALL Query_Pedidos_Empresa(:idEmpresa)",
         { replacements: { idEmpresa } }
       );
