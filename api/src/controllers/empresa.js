@@ -399,13 +399,13 @@ export const EmpresaController = {
 
       return res.status(200).json({
         success: true,
-        message: "El conductor ha sido eliminado correctamente",
+        message: "El conductor ha sido eliminado correctamente.",
       });
     } catch (error) {
       console.error("Error al eliminar el conductor:", error);
       return res.status(500).json({
         success: false,
-        message: "Error al eliminar el conductor",
+        message: "Error al eliminar el conductor.",
         error: error.message,
       });
     }
@@ -426,7 +426,7 @@ export const EmpresaController = {
       console.error("Error al obtener la flota:", error);
       return res.status(500).json({
         success: false,
-        message: "Error al obtener la flota de la empresa",
+        message: "Error al obtener la flota de la empresa.",
         error: error.message,
       });
     }
